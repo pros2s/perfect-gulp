@@ -1,0 +1,12 @@
+{
+  "name": "perfect-gulp",
+  "description": "gulp frontend project",
+
+  "keywords": ["gulp", "js", "scss", "pug", "linters"],
+  "author": "pross",
+  "license": "WTFPL",
+
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
