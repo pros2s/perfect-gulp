@@ -3,16 +3,24 @@ import clean from './gulp/tasks/clean';
 import server from './gulp/tasks/server';
 import config from './gulp/config';
 import { scriptsBuild, scriptsWatch } from './gulp/tasks/scripts';
+import { pugBuild, pugWatch } from './gulp/tasks/pug';
 
 config.setEnv();
 
 export const build = gulp.series(
   clean,
-  scriptsBuild,
+  gulp.parallel(
+    scriptsBuild,
+    pugBuild,
+  ),
 );
 
 export const watch = gulp.series(
-  build,
+  // build,
   server,
-  scriptsWatch,
+
+  gulp.parallel(
+    scriptsWatch,
+    pugWatch,
+  ),
 );
