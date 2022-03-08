@@ -1,0 +1,17 @@
+@import "test";
+
+body {
+  display: flex;
+}
+
+@media (max-width: 400px) {
+  body {
+    display: flex;
+  }
+}
+
+@media (max-width: 400px) {
+  div {
+    display: flex;
+  }
+}
