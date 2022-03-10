@@ -12,7 +12,7 @@ import config from '../config';
 
 const sass = gulpSass(dartSass);
 
-export const scssBuild = (callback) => {
+export const scssBuild = () => (
   gulp.src(`${config.src.scss}/main.scss`)
     .pipe(plumber())
     .pipe(gulpif(config.isDev, sourcemaps.init()))
@@ -24,8 +24,7 @@ export const scssBuild = (callback) => {
       suffix: '.min',
     }))
     .pipe(gulpif(config.isDev, sourcemaps.write('./')))
-    .pipe(gulp.dest(config.dest.css));
-  callback();
-};
+    .pipe(gulp.dest(config.dest.css))
+);
 
 export const scssWatch = () => gulp.watch(`${config.src.scss}/**/*.scss`, scssBuild);

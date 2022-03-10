@@ -5,6 +5,8 @@ import config from './gulp/config';
 import { scriptsBuild, scriptsWatch } from './gulp/tasks/scripts';
 import { pugBuild, pugWatch } from './gulp/tasks/pug';
 import { scssBuild, scssWatch } from './gulp/tasks/styles';
+import { assetsBuild, assetsWatch } from './gulp/tasks/assets';
+import { imagesBuild, imagesWatch } from './gulp/tasks/images';
 
 config.setEnv();
 
@@ -14,18 +16,22 @@ export const build = gulp.series(
     scriptsBuild,
     pugBuild,
     scssBuild,
+    assetsBuild,
+    imagesBuild,
   ),
 );
 
 export const watch = gulp.series(
-  // build,
+  build,
   server,
 
   gulp.parallel(
     scriptsWatch,
     pugWatch,
     scssWatch,
+    assetsWatch,
+    imagesWatch,
   ),
 );
 
-exports.sass = scssBuild;
+exports.img = imagesWatch;
