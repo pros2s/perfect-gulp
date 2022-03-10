@@ -56,6 +56,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
+    "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify": "^3.0.2",
     "husky": "^7.0.4",
     "imagemin-pngquant": "^9.0.2",
