@@ -6,16 +6,14 @@ import gcmq from 'gulp-group-css-media-queries';
 import autoprefixer from 'gulp-autoprefixer';
 import rename from 'gulp-rename';
 import cleanCSS from 'gulp-clean-css';
-import sourcemaps from 'gulp-sourcemaps';
 import gulpif from 'gulp-if';
 import config from '../config';
 
 const sass = gulpSass(dartSass);
 
 export const scssBuild = () => (
-  gulp.src(`${config.src.scss}/main.scss`)
+  gulp.src(`${config.src.scss}/main.scss`, { sourcemaps: true })
     .pipe(plumber())
-    .pipe(gulpif(config.isDev, sourcemaps.init()))
     .pipe(sass())
     .pipe(gulpif(config.isProd, gcmq()))
     .pipe(gulpif(config.isProd, autoprefixer()))
@@ -23,8 +21,7 @@ export const scssBuild = () => (
     .pipe(rename({
       suffix: '.min',
     }))
-    .pipe(gulpif(config.isDev, sourcemaps.write('./')))
-    .pipe(gulp.dest(config.dest.css))
+    .pipe(gulp.dest(config.dest.css, { sourcemaps: true }))
 );
 
 export const scssWatch = () => gulp.watch(`${config.src.scss}/**/*.scss`, scssBuild);
