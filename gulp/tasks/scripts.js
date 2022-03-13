@@ -11,7 +11,7 @@ export const scriptsBuild = () => (
   browserify(`${config.src.js}/main.js`, { debug: true })
     .transform('babelify', { presets: ['@babel/preset-env'] })
     .bundle()
-    .on('error', function browserifyError(error) {
+    .on('error', (error) => {
       console.log(error.stack);
       this.emit('end');
     })

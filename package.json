@@ -26,6 +26,7 @@
   "browserslist": [
     "> 0.1%",
     "last 2 versions",
+    "not dead",
     "IE 11"
   ],
   "author": "pross",
@@ -66,6 +67,7 @@
     "imagemin-webp": "^6.0.0",
     "import-fresh": "^3.3.0",
     "lint-staged": "^12.3.4",
+    "pug-include-glob": "^0.4.3",
     "pug-lint": "^2.6.0",
     "sass": "^1.49.9",
     "stylelint": "^14.5.3",

@@ -1,0 +1,10 @@
+mixin imgLazy(src)
+  img(class='lazy', data-src=src, src='images/common/placeholder.png', alt='')&attributes(attributes)
+
+mixin img(src, srcPlaceholder='images/common/placeholder.png')
+  - const srcParts = src.split('.')
+  - const [firstPart, extName] = srcParts
+
+  picture
+    source(type='image/webp', data-srcset=`${firstPart}.webp`, srcset=srcPlaceholder)
+    img(class='lazy', data-src=`${firstPart}.${extName}`, src=srcPlaceholder, alt='')&attributes(attributes)
