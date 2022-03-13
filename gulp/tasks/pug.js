@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import notify from 'gulp-notify';
 import pug from 'gulp-pug';
 import gulpif from 'gulp-if';
 import { setup as emittySetup } from '@zoxon/emitty';
@@ -17,7 +18,15 @@ global.emittyChangedFile = {
 
 export const pugBuild = () => (
   gulp.src(`${config.src.pug}/*.pug`)
-    .pipe(plumber())
+    .pipe(plumber({
+      errorHandler: (err) => {
+        notify.onError({
+          title: 'PUG Error',
+          message: 'Error: <%= error.message %>',
+        })(err);
+        this.emit('end');
+      },
+    }))
     .pipe(
       gulpif(
         global.isPugWatch,

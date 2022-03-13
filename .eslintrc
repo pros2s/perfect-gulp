@@ -5,6 +5,7 @@
   "rules":{
     "linebreak-style": 0,
     "eol-last": ["error", "never"],
+    "func-names": ["error", "never"],
     "no-console": "off",
     "no-alert": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["gulpfile.babel.js", "gulp/**/*"]}],
@@ -13,8 +14,16 @@
     }]
   },
 
+  "globals": {
+    "document": true,
+    "foo": true,
+    "window": true
+  },
+
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true,
+    "jasmine": true
   },
 
   "settings": {
