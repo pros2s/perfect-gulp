@@ -1,9 +1,7 @@
 build
-package-lock.json
 
 __MACOSX
 .Saved
-.husky
 _arc
 bower_components
 node_modules
