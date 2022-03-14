@@ -37,7 +37,7 @@ export const pugBuild = () => (
         ),
       ),
     )
-    .pipe(pug({ pretty: false, plugins: [pugIncludeGlob()] }))
+    .pipe(pug({ pretty: config.isDev, plugins: [pugIncludeGlob()] }))
     .pipe(gulp.dest(config.dest.html))
 );
 
