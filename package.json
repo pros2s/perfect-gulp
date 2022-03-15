@@ -9,7 +9,7 @@
   "lint-staged": {
     "*.js": "eslint",
     "*.pug": "pug-lint",
-    "*.scss": "stylelint"
+    "*.scss": "stylelint --allow-empty-input"
   },
   "husky": {
     "hooks": {
