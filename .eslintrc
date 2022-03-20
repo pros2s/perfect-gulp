@@ -11,6 +11,9 @@
     "no-undef": "off",
     "no-multiple-empty-lines": "off",
     "no-param-reassign": "off",
+    "no-continue": "off",
+    "no-plusplus": "off",
+    "allowTernary": true ,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": ["gulpfile.babel.js", "gulp/**/*"]}],
     "import/no-import-module-exports": ["error", {
       "exceptions": ["**/*.js"]
