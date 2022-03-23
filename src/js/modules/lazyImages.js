@@ -13,6 +13,6 @@ export default () => {
 
   // eslint-disable-next-line no-unused-vars
   const lazyLoadInstance = new LazyLoad({
-    elements_selector: '.lazy',
+    elements_selector: '.lazy'
   });
 };

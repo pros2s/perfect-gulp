@@ -2,13 +2,13 @@ import gulp from 'gulp';
 import svgSprite from 'gulp-svg-sprite';
 import config from '../config';
 
-const spriteMono = () => (
+const spriteMono = () =>
   gulp.src(`${config.src.iconsMono}/**/*.svg`)
     .pipe(svgSprite({
       mode: {
         symbol: {
-          sprite: '../sprites/sprite-mono.svg',
-        },
+          sprite: '../sprites/sprite-mono.svg'
+        }
       },
       shape: {
         transform: [
@@ -17,25 +17,24 @@ const spriteMono = () => (
               plugins: [
                 {
                   removeAttrs: {
-                    attrs: ['class', 'data-name', 'fill.*', 'stroke.*'],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
+                    attrs: ['class', 'data-name', 'fill.*', 'stroke.*']
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
     }))
-    .pipe(gulp.dest(config.dest.images))
-);
+    .pipe(gulp.dest(config.dest.images));
 
-const spriteMulti = () => (
+const spriteMulti = () =>
   gulp.src(`${config.src.iconsMulti}/**/*.svg`)
     .pipe(svgSprite({
       mode: {
         symbol: {
-          sprite: '../sprites/sprite-multi.svg',
-        },
+          sprite: '../sprites/sprite-multi.svg'
+        }
       },
       shape: {
         transform: [
@@ -44,23 +43,22 @@ const spriteMulti = () => (
               plugins: [
                 {
                   removeAttrs: {
-                    attrs: ['class', 'data-name'],
-                  },
+                    attrs: ['class', 'data-name']
+                  }
                 },
                 {
-                  removeUselessStrokeAndFill: false,
+                  removeUselessStrokeAndFill: false
                 },
                 {
-                  inlineStyles: true,
-                },
-              ],
-            },
-          },
-        ],
-      },
+                  inlineStyles: true
+                }
+              ]
+            }
+          }
+        ]
+      }
     }))
-    .pipe(gulp.dest(config.dest.images))
-);
+    .pipe(gulp.dest(config.dest.images));
 
 export const spritesBuild = gulp.parallel(spriteMono, spriteMulti);
 

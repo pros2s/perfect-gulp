@@ -17,29 +17,37 @@ const SMART_GRID_CONFIG_NAME = 'smart-grid-config.js';
 
 const sass = gulpSass(dartSass);
 
-const scssBuild = () => (
-  gulp.src(`${config.src.scss}/main.scss`, { sourcemaps: config.isDev })
+const scssBuild = () =>
+  gulp.src(`${config.src.scss}/main.scss`,
+    {
+      sourcemaps: config.isDev
+    })
     .pipe(plumber({
       errorHandler: (err) => {
         notify.onError({
           title: 'SCSS Error',
-          message: 'Error: <%= error.message %>',
+          message: 'Error: <%= error.message %>'
         })(err);
         this.emit('end');
-      },
+      }
     }))
     .pipe(sassGlob())
     .pipe(sass({
-      includePaths: ['./node_modules'],
+      includePaths: ['./node_modules']
     }))
     .pipe(gulpif(config.isProd, gcmq()))
     .pipe(gulpif(config.isProd, autoprefixer()))
-    .pipe(gulpif(config.isProd, cleanCSS({ level: 2 })))
+    .pipe(gulpif(config.isProd, cleanCSS(
+      {
+        level: 2
+      })))
     .pipe(rename({
-      suffix: '.min',
+      suffix: '.min'
     }))
-    .pipe(gulp.dest(config.dest.css, { sourcemaps: config.isDev }))
-);
+    .pipe(gulp.dest(config.dest.css,
+      {
+        sourcemaps: config.isDev
+      }));
 
 const smartGridBuild = (callback) => {
   const smartGridConfig = importFresh(`../../${SMART_GRID_CONFIG_NAME}`);

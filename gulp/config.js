@@ -10,7 +10,7 @@ const config = {
     fonts: `${srcPath}/assets/fonts`,
     images: `${srcPath}/assets/images`,
     iconsMono: `${srcPath}/assets/icons/mono`,
-    iconsMulti: `${srcPath}/assets/icons/multi`,
+    iconsMulti: `${srcPath}/assets/icons/multi`
   },
 
   dest: {
@@ -19,13 +19,13 @@ const config = {
     js: `${destPath}/js`,
     css: `${destPath}/css`,
     fonts: `${destPath}/fonts`,
-    images: `${destPath}/images`,
+    images: `${destPath}/images`
   },
 
   setEnv() {
     this.isProd = process.argv.includes('--prod');
     this.isDev = !this.isProd;
-  },
+  }
 };
 
 export default config;

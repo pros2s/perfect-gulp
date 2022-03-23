@@ -1,29 +1,120 @@
 {
-  "extends": "airbnb-base",
+  "extends": [
+    "eslint:recommended"
+  ],
   "parser": "@babel/eslint-parser",
 
   "rules":{
-    "linebreak-style": 0,
-    "eol-last": ["error", "never"],
-    "func-names": ["error", "never"],
-    "no-console": "off",
-    "no-alert": "off",
-    "no-undef": "off",
-    "no-multiple-empty-lines": "off",
-    "no-param-reassign": "off",
-    "no-continue": "off",
-    "no-plusplus": "off",
-    "allowTernary": true ,
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["gulpfile.babel.js", "gulp/**/*"]}],
-    "import/no-import-module-exports": ["error", {
-      "exceptions": ["**/*.js"]
-    }]
-  },
+    "indent": [1, 2, { // Используйте 4 пробела для отступа регистра в switch-case
+      "SwitchCase": 1
+    }],
+    "semi": [1, "always"], // Обязательная точка с запятой в конце оператора Игнорировать последнюю точку с запятой в фигурных скобках
+    "semi-spacing": [1, { // Обязательные пробелы после точки с запятой и запрещение пробелов перед точкой с запятой
+      "before": false,
+      "after": true
+    }],
+    "comma-dangle": [1, "never"], // Последняя запятая пар ключ-значение массива и объекта
+      "comma-spacing": [1, { // Пробелы перед запятой запрещены, а пробелы обязательны после запятой
+        "before": false,
+        "after": true
+      }],
 
-  "globals": {
-    "document": true,
-    "foo": true,
-    "window": true
+    /* Правила, связанные с пространством */
+    "key-spacing": [1, { // Пара "ключ-значение" объекта Нет пробела перед двоеточием, пробела после двоеточия
+          "beforeColon": false,
+          "afterColon": true
+    }],
+    "no-multi-spaces": 1, // Запрещаем использование нескольких пробелов
+    "no-trailing-spaces": 1, // Запрещаем конечные пробелы
+    "no-whitespace-before-property": 1, // Запрещаем пробелы перед атрибутами
+    "space-before-blocks": [1, "always"], // требуется пробел перед блоком операторов
+    "space-before-function-paren": [1, "never"], // Перед закрытыми скобками функции нет пробелов
+    "space-in-parens": 1, // Не используйте пробелы в круглых скобках
+    "space-infix-ops": 1, // требуются пробелы вокруг оператора
+    "space-unary-ops": [1, { // Пробелы требуются после унарных операторов слов. Пробелы не требуются до и после унарных операторов, не являющихся словами
+      "words": true, // Унарные операторы класса Word new, delete, typeof, void ...
+      "nonwords": false // Унарные операторы без слов -, +, -, ++,!, !! ...
+    }],
+    "spaced-comment": [1, "always", { // Обязательное использование одинаковых пробелов в комментариях // или / *
+      "line": {
+        "exceptions": ["-", "+"],
+        "markers": ["/"]
+      },
+      "block": {
+        "exceptions": ["*"],
+        "markers": ["global", "globals", "eslint", "eslint-disable", "*package", "!"],
+        "balanced": true
+      }
+    }],
+    "array-bracket-spacing": 1, // Не используйте пробелы после массива "[" и перед "]"
+    "block-spacing": [1, "always"], // Обеспечивает постоянный интервал между левой фигурной скобкой и следующим токеном на той же строке и устанавливает постоянный интервал между правой фигурной скобкой и предыдущим токеном в той же строке,
+    "computed-property-spacing": [1, "never"], // Запрещаем использование пробелов в вычисляемых атрибутах
+    "func-call-spacing": 1, // Запрещаем пробелы между идентификатором функции и ее вызовом
+    "keyword-spacing": [1, { // Обязательно используйте одинаковые пробелы до и после ключевых слов
+      "before": true,
+      "after": true
+      }
+    ],
+    "object-curly-spacing": [1, "never"], // Запрещаем пробелы после "{" и перед "}" объекта
+    "switch-colon-spacing": 1, // Принудительно ставить пробел после двоеточия переключателя и запрещать пробел перед двоеточием переключателя
+
+    /*  Правила, связанные с пустой строкой */
+    "eol-last": [1, "always"], // Форсировать пустую строку в конце непустых файлов
+    "lines-around-comment": [1, { // Форсировать пустую строку перед комментарием
+      "beforeBlockComment": true,
+      "beforeLineComment": true,
+      "allowBlockStart": true,
+      "allowObjectStart": true,
+      "allowArrayStart": true,
+      "allowClassStart": true
+    }],
+    "lines-between-class-members": 1, // Заставить пустую строку между членами класса
+    "no-multiple-empty-lines": [1, { // До двух последовательных пустых строк
+      "max": 2
+    }],
+    "padding-line-between-statements": [1, { // Форсировать пустую строку после объявления функции
+      "blankLine": "always",
+      "prev": "var",
+      "next": "*"
+    }, { // Форсировать пустую строку после «блочного оператора», такого как {}, if (a) {}, while (a) {}
+      "blankLine": "always",
+      "prev": "block-like",
+      "next": "*"
+    }],
+    "one-var-declaration-per-line": 1, // Заставить каждую инструкцию инициализации переменной обернуть
+    "operator-linebreak": [1, "after"], // Принудительно помещать символ новой строки после оператора
+    "comma-style": 1, // Принудительно вводить символ новой строки после запятой
+    "brace-style": [1, "1tbs"],
+    "quotes": [1, "single"],// В js необходимо использовать одинарные кавычки
+
+    /* Правила, связанные с именованием переменных */
+    "camelcase": [1, { // Стандартные переменные названы в верблюжьем регистре (кроме свойств объекта)
+        "properties": "never"
+    }],
+    "new-cap": 1, // Сделать первую букву конструктора заглавной
+    "id-blacklist": [1, "break", "case", "catch", "continue", "default", "delete", "do", "else", "finally", "for", "function", "if", "in", "instanceof", "new", "return", "switch", "this", "throw", "try", "typeof", "var", "void", "while", "with", "abstract", "boolean", "byte", "char", "class", "const", "debugger", "double", "enum", "export", "extends", "final", "float", "goto", "implements", "import", "int", "interface", "long", "native", "package", "private", "protected", "public", "short", "static", "super", "synchronized", "throws", "transient", "volatile"], // Запрещено использовать ключевые слова или зарезервированные слова в качестве имен переменных
+    "wrap-iife": [1, "inside"],
+    "object-curly-newline": [1, { // Непустые объекты требуют разрыва строки
+      "ObjectExpression": {
+        "minProperties": 1
+      }
+    }],
+    "object-property-newline": 1, // Разные атрибуты объекта размещаются на разных строках
+    "eqeqeq": 1, // Обязательное использование === и! ==
+    "no-use-before-define": [1, { // Запрещаем сначала использовать переменные и классы, а затем объявлять
+      "functions": false,
+      "classes": true,
+      "variables": true
+    }],
+    "no-new": 1, // Не используйте конструктор просто в предложении кода, не забудьте присвоить его переменной
+    "no-extra-parens": 1, // запретить ненужные скобки
+    "consistent-this": [1, "_this", "that", "self"], // Ссылка на контекст this может быть названа только с использованием одного из"_this "," that "и"self"
+    "no-empty-function": 1, // Нет пустой функции
+    "semi-style": 1,
+    "linebreak-style": 0,
+    "func-names": ["error", "never"],
+    "no-undef": "off",
+    "no-param-reassign": "off"
   },
 
   "env": {

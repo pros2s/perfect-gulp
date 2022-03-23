@@ -2,31 +2,31 @@ import gulp from 'gulp';
 import notify from 'gulp-notify';
 import pug from 'gulp-pug';
 import gulpif from 'gulp-if';
-import { setup as emittySetup } from '@zoxon/emitty';
+import {setup as emittySetup} from '@zoxon/emitty';
 import plumber from 'gulp-plumber';
 import pugIncludeGlob from 'pug-include-glob';
 import config from '../config';
 
 const emittyPug = emittySetup(config.src.pug, 'pug', {
-  makeVinylFile: true,
+  makeVinylFile: true
 });
 
 global.isPugWatch = false;
 global.emittyChangedFile = {
   path: '',
-  stats: null,
+  stats: null
 };
 
-export const pugBuild = () => (
+export const pugBuild = () =>
   gulp.src(`${config.src.pug}/*.pug`)
     .pipe(plumber({
       errorHandler: (err) => {
         notify.onError({
           title: 'PUG Error',
-          message: 'Error: <%= error.message %>',
+          message: 'Error: <%= error.message %>'
         })(err);
         this.emit('end');
-      },
+      }
     }))
     .pipe(
       gulpif(
@@ -37,9 +37,12 @@ export const pugBuild = () => (
         ),
       ),
     )
-    .pipe(pug({ pretty: config.isDev, plugins: [pugIncludeGlob()] }))
-    .pipe(gulp.dest(config.dest.html))
-);
+    .pipe(pug(
+      {
+        pretty: config.isDev,
+        plugins: [pugIncludeGlob()]
+      }))
+    .pipe(gulp.dest(config.dest.html));
 
 export const pugWatch = () => {
   global.isPugWatch = true;
@@ -47,7 +50,7 @@ export const pugWatch = () => {
     .on('all', (event, filepath, stats) => {
       global.emittyChangedFile = {
         path: filepath,
-        stats,
+        stats
       };
     });
 };
